@@ -78,73 +78,74 @@ function init() {
             welcomeText: 'Добро пожаловать на сайт модов и скриптов. Вам нужно открыть меню в правом верхнем углу и нажать кнопку "Моды", чтобы просмотреть доступные модификации. Все скрипты и моды протестированы и безопасны в использовании.',
             modsTitle: 'Доступные Моды',
             modsSubtitle: 'Выберите нужную модификацию',
-            scriptTitle: 'Скрипт',
-            scriptDesc: 'Скрипт для разрушения игры',
-            hsTitle: 'Hypper Sandbox Mod v1.0',
-            hsDesc: 'Мод: Нет рекламы, Устранение некоторых багов, Удаление половины античита, Добавление смещений для функций',
-            downloadScript: 'Скачать',
-            downloadHS: 'Скачать',
-            discord: 'DISCORD',
-            telegram: 'TELEGRAM',
-            contactTitle: 'Связь с Нами',
-            contactChannel: 'Наш телеграм канал:',
-            contactDiscord: 'Дискорд создателя:',
-            contactCreator: 'Телеграм создателя:',
-            infoText: 'Вся инструкция по установке находится в архиве. Распакуйте скачанный ZIP-файл и откройте документ "INSTALL.txt" для получения подробных указаний.',
-            footerText: 'By Sanbox'
-        },
-        en: {
-            home: '🏠 Home',
-            mods: '🎮 Mods',
-            contact: '📞 Contact Us',
-            language: '🌐 Change Language',
-            cancel: '❌ Cancel',
-            welcomeTitle: 'Welcome to Mods & Scripts',
-            welcomeText: 'Welcome to the website of mods and scripts. You need to open the menu in the upper right corner and press the "Mods" button to view available modifications. All scripts and mods are tested and safe to use.',
-            modsTitle: 'Available Mods',
-            modsSubtitle: 'Select the modification you need',
-            scriptTitle: 'Script',
-            scriptDesc: 'Script for Destroy the Game',
-            hsTitle: 'Hypper Sandbox Mod v1.0',
-            hsDesc: 'Mod: No Ads, Remove some Bugs, Remove half Anti-Cheat, Add Offsets for functions',
-            downloadScript: 'Download',
-            downloadHS: 'Download',
-            discord: 'DISCORD',
-            telegram: 'TELEGRAM',
-            contactTitle: 'Contact Us',
-            contactChannel: 'Our telegram channel:',
-            contactDiscord: 'Creator\'s Discord:',
-            contactCreator: 'Creator\'s Telegram:',
-            infoText: 'All installation instructions are in the archive. Extract the downloaded ZIP file and open the "INSTALL.txt" document for detailed instructions.',
-            footerText: 'By Sanbox'
-        }
-    };
-    
-    // Применяем перевод
-    function applyTranslation(lang) {
-        const texts = translations[lang];
-        
-        // Меню
-        document.querySelector('[data-section="home"]').textContent = texts.home;
-        document.querySelector('[data-section="mods"]').textContent = texts.mods;
-        document.querySelector('[data-section="contact"]').textContent = texts.contact;
-        document.querySelector('[data-section="language"]').textContent = texts.language;
-        document.getElementById('cancelBtn').textContent = texts.cancel;
-        document.getElementById('cancelLangBtn').textContent = texts.cancel;
-        
-        // Главная страница
-        document.querySelector('.welcome-title').textContent = texts.welcomeTitle;
-        document.getElementById('welcomeText').textContent = texts.welcomeText;
-        document.getElementById('discordBtn').textContent = texts.discord;
-        document.getElementById('telegramBtn').textContent = texts.telegram;
-        
-        // Страница модов
-        document.querySelectorAll('.section-title')[1].textContent = texts.modsTitle;
-        document.querySelector('.section-subtitle').textContent = texts.modsSubtitle;
-        document.querySelectorAll('.mod-title')[0].textContent = texts.scriptTitle;
-        document.getElementById('scriptDesc').textContent = texts.scriptDesc;
-        document.querySelectorAll('.mod-title')[1].textContent = texts.hsTitle;
-        document.getElementById('hsDesc').textContent = texts.hsDesc;
+            // Если элементы меню существуют, навесим обработчики; иначе пропустим
+            const menuBtn = document.getElementById('menuBtn');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const languageMenu = document.getElementById('languageMenu');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const cancelLangBtn = document.getElementById('cancelLangBtn');
+            const langBtns = document.querySelectorAll('.lang-btn');
+            const menuItems = document.querySelectorAll('.menu-item[data-section]');
+
+            if (menuBtn && dropdownMenu && languageMenu) {
+                menuBtn.addEventListener('click', function() {
+                    dropdownMenu.classList.toggle('hidden');
+                    languageMenu.classList.add('hidden');
+                });
+            }
+
+            if (cancelBtn && dropdownMenu) {
+                cancelBtn.addEventListener('click', function() {
+                    dropdownMenu.classList.add('hidden');
+                });
+            }
+
+            if (cancelLangBtn && languageMenu && dropdownMenu) {
+                cancelLangBtn.addEventListener('click', function() {
+                    languageMenu.classList.add('hidden');
+                    dropdownMenu.classList.remove('hidden');
+                });
+            }
+
+            if (menuItems && menuItems.length) {
+                menuItems.forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const section = this.dataset.section;
+
+                        if (section === 'language' && dropdownMenu && languageMenu) {
+                            dropdownMenu.classList.add('hidden');
+                            languageMenu.classList.remove('hidden');
+                            return;
+                        }
+
+                        // Скрываем все разделы
+                        document.querySelectorAll('.section').forEach(s => {
+                            s.classList.remove('active');
+                            s.classList.add('hidden');
+                        });
+
+                        // Показываем выбранный раздел
+                        const target = document.getElementById(section);
+                        if (target) {
+                            target.classList.remove('hidden');
+                            target.classList.add('active');
+                        }
+
+                        if (dropdownMenu) dropdownMenu.classList.add('hidden');
+                    });
+                });
+            }
+
+            if (langBtns && langBtns.length) {
+                langBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const lang = this.dataset.lang;
+                        applyTranslation(lang);
+                        if (languageMenu) languageMenu.classList.add('hidden');
+                    });
+                });
+            }
         document.getElementById('downloadScript').textContent = texts.downloadScript;
         document.getElementById('downloadHS').textContent = texts.downloadHS;
         

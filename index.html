@@ -13,40 +13,19 @@
     
     <div class="container">
         <header>
-            <div class="header-content">
+            <div class="header-content" style="flex-direction:column;align-items:center;">
                 <h1 class="logo">Sanbox Mods</h1>
-                <button class="menu-btn" id="menuBtn">
-                    <img src="menu.png" alt="Menu" class="menu-icon">
-                </button>
             </div>
-            
-            <nav class="dropdown-menu hidden" id="dropdownMenu">
-                <div class="menu-content">
-                    <a href="#" class="menu-item" data-section="home">🏠 Главная</a>
-                    <a href="#" class="menu-item" data-section="mods">🎮 Моды</a>
-                    <a href="#" class="menu-item" data-section="contact">📞 Связь</a>
-                    <a href="#" class="menu-item" data-section="language">🌐 Язык</a>
-                    <button class="menu-item cancel-btn" id="cancelBtn">❌ Отмена</button>
-                </div>
-            </nav>
-            
-            <nav class="language-menu hidden" id="languageMenu">
-                <div class="menu-content">
-                    <button class="menu-item lang-btn" data-lang="ru">🇷🇺 Русский</button>
-                    <button class="menu-item lang-btn" data-lang="en">🇺🇸 English</button>
-                    <button class="menu-item cancel-btn" id="cancelLangBtn">❌ Отмена</button>
-                </div>
-            </nav>
         </header>
 
         <main>
             <section id="home" class="section active">
                 <div class="welcome-section">
-                    <h2 class="welcome-title">Добро пожаловать в Моды и Скрипты</h2>
+                    <h2 class="welcome-title">Добро пожаловать</h2>
                     <p class="welcome-text" id="welcomeText">
-                        Добро пожаловать на сайт модов и скриптов. Вам нужно открыть меню в правом верхнем углу и нажать кнопку "Моды", чтобы просмотреть доступные модификации. Все скрипты и моды протестированы и безопасны в использовании.
+                        Добро пожаловать на сайт модов и скриптов от Sanbox. Вам предстоит пролистать вниз и выбрать какой вы хотите скачать мод либо скрипт. Все скрипты и моды протестированы и безопасны в использовании.
                     </p>
-                    
+
                     <div class="social-buttons">
                         <a href="https://discord.com/users/sanbox184" target="_blank" class="social-btn">
                             <img src="d2.jpg" alt="Discord" class="btn-icon">
@@ -60,7 +39,7 @@
                 </div>
             </section>
 
-            <section id="mods" class="section hidden">
+            <section id="mods" class="section active">
                 <div class="mods-section">
                     <h2 class="section-title">Доступные Моды</h2>
                     <p class="section-subtitle">Выберите нужную модификацию</p>

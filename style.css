@@ -21,7 +21,7 @@ html {
 
 body {
     font-family: '1s', Arial, sans-serif;
-    background: linear-gradient(135deg, #0a1a2a 0%, #1a2a3a 100%);
+    background: linear-gradient(180deg, #000428 0%, #004e92 50%, #a0e7ff 100%);
     color: white;
     min-height: 100vh;
     position: relative;
@@ -125,7 +125,7 @@ header {
 
 .header-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     animation: fadeIn 0.8s ease-out;
 }
