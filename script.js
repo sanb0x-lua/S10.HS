@@ -198,40 +198,6 @@ function init() {
         setInterval(()=>{ position = (position + 1) % 10000; bg.style.backgroundPosition = `${position}px ${position}px`; }, 60);
     }
     animateBackground();
-
-    // Добавляем интерактивные красные анимации на элементы
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-        if (section.classList.contains('active')) {
-            section.style.animation = 'redSlide 0.8s ease-out, fadeIn 0.8s ease-out';
-        }
-    });
-
-    // Анимации на клик элементов
-    const allAnimatedElements = document.querySelectorAll('.social-btn, .download-btn, .mod-card');
-    allAnimatedElements.forEach(el => {
-        el.addEventListener('mouseenter', function() {
-            this.style.animation = this.style.animation + ', redPulse 1s infinite, redGlow 1.5s infinite';
-        });
-        
-        el.addEventListener('mouseleave', function() {
-            // Resetanimate
-            void this.offsetWidth;
-        });
-
-        el.addEventListener('click', function() {
-            this.style.animation = this.style.animation + ', redPop 0.6s ease-out';
-        });
-    });
-
-    // Микро-анимации на случайные элементы каждые 3 секунды
-    setInterval(() => {
-        const randomElements = document.querySelectorAll('.mod-title, .welcome-title, .section-title');
-        if (randomElements.length > 0) {
-            const randomEl = randomElements[Math.floor(Math.random() * randomElements.length)];
-            randomEl.style.animation = randomEl.style.animation + ', redHeartPulse 1s ease-in-out';
-        }
-    }, 3000);
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
